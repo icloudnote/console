@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "../react-mix",
+    },
+    {
+      "path": "../go-mix",
+    },
+    {
+      "path": "../gopkg",
+    },
+  ],
+  "settings": {},
+}
