@@ -8,9 +8,9 @@
 
 | 项目 | 路径 | 技术栈 | 端口 |
 |------|------|--------|------|
-| 前端 | `/Users/zcj/Git/github/icloudnote/react-mix` | UmiJS Max + Ant Design Pro + TypeScript + pnpm | 1080 |
-| 后端 | `/Users/zcj/Git/github/icloudnote/go-mix` | Go + Gin + gRPC + MySQL + Redis | 1081 |
-| 软件包 | `/Users/zcj/Git/github/icloudnote/gopkg` | Go 工具包集合 | - |
+| 前端 | `../react-mix` | UmiJS Max + Ant Design Pro + TypeScript + pnpm | 1080 |
+| 后端 | `../go-mix` | Go + Gin + gRPC + MySQL + Redis | 1081 |
+| 软件包 | `../gopkg` | Go 工具包集合 | - |
 
 ### 项目关系
 
@@ -25,7 +25,7 @@
 ### 前端 (react-mix)
 
 ```bash
-cd /Users/zcj/Git/github/icloudnote/react-mix
+cd ../react-mix
 
 # 安装依赖
 pnpm install
@@ -70,7 +70,7 @@ npm run test:update
 ### 后端 (go-mix)
 
 ```bash
-cd /Users/zcj/Git/github/icloudnote/go-mix
+cd ../go-mix
 
 # 代码生成
 make wire          # Google Wire 依赖注入生成
@@ -97,7 +97,7 @@ make clean
 ### 软件包 (gopkg)
 
 ```bash
-cd /Users/zcj/Git/github/icloudnote/gopkg
+cd ../gopkg
 
 # 格式化代码
 make format
@@ -155,7 +155,7 @@ go test -cover ./internal/openapi/service/...
 
 ```bash
 # 进入具体包目录
-cd /Users/zcj/Git/github/icloudnote/gopkg/redis
+cd ../gopkg/redis
 
 # 运行测试
 go test ./...
@@ -408,3 +408,15 @@ git commit -m "docs(readme): 更新安装说明"
 - 包含多个服务构建流程（docker, github, helm, openapi 等）
 - 自动 golangci-lint 检查
 - Docker 镜像构建和推送
+
+### 运行
+
+```bash
+pm2 list        # 查看所有程序
+pm2 status      # 查看所有程序状况
+pm2 restart 0   # 重启程序
+
+pm2 start --name openapi-http go -- run ./cmd/openapi http --addr=:1081
+pm2 start --name openapi-worker go -- run ./cmd/openapi worker
+pm2 start --name react-mix deno -- run start:dev
+```
